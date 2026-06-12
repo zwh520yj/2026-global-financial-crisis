@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 2026 Global Financial Crisis Has Arrived — A Perfect Storm</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
+            integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
+            crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface2: #1a1a28;
+            --surface3: #222238;
+            --gold: #d4a853;
+            --red: #e74c3c;
+            --red-dim: #c0392b;
+            --green: #27ae60;
+            --blue: #3498db;
+            --orange: #f39c12;
+            --text: #e0e0e0;
+            --text-dim: #999;
+            --text-bright: #fff;
+            --border: #2a2a3a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(ellipse at center, #1a1020 0%, #0a0a0f 70%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.01) 2px, rgba(255,255,255,0.01) 4px);
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(4px,4px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--red);
+            color: #fff;
+            padding: 6px 20px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(231,76,60,0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(231,76,60,0); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--text-bright);
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .accent { color: var(--red); }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .hero-stat {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            min-width: 160px;
+        }
+
+        .hero-stat .num {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--red);
+        }
+
+        .hero-stat .label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============ NAV ============ */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10,10,15,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.6rem 0;
+        }
+
+        .sticky-nav .inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 0 1rem;
+        }
+
+        .sticky-nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+
+        .sticky-nav a:hover { color: var(--red); }
+
+        /* ============ SECTIONS ============ */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header .tag {
+            display: inline-block;
+            background: var(--surface3);
+            color: var(--gold);
+            padding: 4px 14px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--text-bright);
+            line-height: 1.2;
+        }
+
+        .section-header h2 .accent { color: var(--red); }
+
+        .section-header p {
+            color: var(--text-dim);
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+
+        /* ============ PROFILE CARDS ============ */
+        .profile-duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .profile-duo { grid-template-columns: 1fr; }
+        }
+
+        .profile-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+
+        .profile-card.gao::before { background: linear-gradient(90deg, #e74c3c, #f39c12); }
+        .profile-card.rogers::before { background: linear-gradient(90deg, #f39c12, #d4a853); }
+
+        .profile-card .avatar {
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            overflow: hidden;
+            border: 3px solid var(--border);
+        }
+
+        .profile-card .avatar svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .profile-card.gao .avatar {
+            background: linear-gradient(135deg, rgba(231,76,60,0.12), rgba(212,168,83,0.08));
+            border-color: rgba(231,76,60,0.4);
+        }
+        .profile-card.rogers .avatar {
+            background: linear-gradient(135deg, rgba(243,156,18,0.12), rgba(212,168,83,0.08));
+            border-color: rgba(212,168,83,0.4);
+        }
+
+        .profile-card h3 { font-size: 1.5rem; color: var(--text-bright); margin-bottom: 0.2rem; }
+        .profile-card .title { color: var(--gold); font-size: 0.85rem; margin-bottom: 1rem; }
+
+        .profile-card .quote-block {
+            background: var(--surface2);
+            border-left: 3px solid var(--red);
+            padding: 1rem 1.2rem;
+            margin: 1rem 0;
+            font-style: italic;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .profile-card.rogers .quote-block { border-left-color: var(--orange); }
+
+        .profile-card ul { padding-left: 1.2rem; color: var(--text-dim); }
+        .profile-card ul li { margin-bottom: 0.5rem; }
+        .profile-card ul li strong { color: var(--text-bright); }
+
+        /* ============ QUOTE BANNER ============ */
+        .quote-banner {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .quote-banner .icon { font-size: 3rem; color: var(--gold); opacity: 0.3; }
+        .quote-banner blockquote {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            font-style: italic;
+            margin: 1rem 0;
+        }
+        .quote-banner .attribution { color: var(--gold); font-size: 0.85rem; }
+
+        /* ============ INDICATOR GRID ============ */
+        .indicator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .indicator-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: border-color 0.3s;
+        }
+
+        .indicator-card:hover { border-color: var(--red); }
+
+        .indicator-card .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .indicator-card .card-icon {
+            font-size: 1.8rem;
+            width: 48px; height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface2);
+            border-radius: 10px;
+        }
+
+        .indicator-card .status {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status.critical { background: rgba(231,76,60,0.15); color: var(--red); }
+        .status.warning { background: rgba(243,156,18,0.15); color: var(--orange); }
+        .status.alert { background: rgba(231,76,60,0.2); color: #ff6b6b; }
+
+        .indicator-card h3 {
+            font-size: 1.05rem;
+            color: var(--text-bright);
+            margin-bottom: 0.5rem;
+        }
+
+        .indicator-card .big-num {
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: var(--red);
+            line-height: 1;
+        }
+
+        .indicator-card .big-num.warn { color: var(--orange); }
+        .indicator-card .detail { color: var(--text-dim); font-size: 0.8rem; margin-top: 0.5rem; }
+
+        /* ============ CHARTS ============ */
+        .chart-container {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .chart-container h3 {
+            color: var(--text-bright);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .chart-wrap {
+            position: relative;
+            width: 100%;
+            max-height: 400px;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .chart-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ============ TIMELINE ============ */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--red), var(--orange), var(--gold));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 1rem 0 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem; top: 1.5rem;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--red);
+            border: 2px solid var(--bg);
+        }
+
+        .timeline-item .date {
+            font-size: 0.75rem;
+            color: var(--gold);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .timeline-item h4 { color: var(--text-bright); margin: 0.3rem 0; }
+
+        .timeline-item p { color: var(--text-dim); font-size: 0.9rem; }
+
+        /* ============ ACTIONS TABLE ============ */
+        .actions-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .actions-table thead { background: var(--surface2); }
+
+        .actions-table th {
+            padding: 1rem 1.2rem;
+            text-align: left;
+            font-size: 0.7rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .actions-table td {
+            padding: 1rem 1.2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        .actions-table .name { color: var(--text-bright); font-weight: 700; }
+        .actions-table .amount { color: var(--red); font-weight: 700; }
+        .actions-table .action { color: var(--orange); font-weight: 600; }
+
+        /* ============ FOOTER ============ */
+        .site-footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        .site-footer .sources { margin-top: 1rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left; }
+        .site-footer .sources h4 { color: var(--gold); margin-bottom: 0.5rem; }
+        .site-footer .sources li { margin-bottom: 0.3rem; word-break: break-all; font-size: 0.75rem; }
+
+        /* dividers */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 2rem 0;
+        }
+
+        /* responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero-stats { gap: 1rem; }
+            .hero-stat { min-width: 120px; padding: 1rem; }
+            .hero-stat .num { font-size: 1.5rem; }
+            .section { padding: 2rem 1rem; }
+            .section-header h2 { font-size: 1.6rem; }
+            .chart-grid { grid-template-columns: 1fr; }
+        }
+
+        .risk-meter {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--surface);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .risk-bar {
+            flex: 1;
+            height: 18px;
+            background: var(--surface2);
+            border-radius: 9px;
+            overflow: hidden;
+        }
+
+        .risk-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--orange), var(--red));
+            border-radius: 9px;
+            width: 91%;
+            position: relative;
+        }
+
+        .risk-label {
+            font-weight: 900;
+            color: var(--red);
+            font-size: 1.5rem;
+            white-space: nowrap;
+        }
+
+        .collapse-comparison {
+            overflow-x: auto;
+        }
+
+        .collapse-comparison table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .collapse-comparison th, .collapse-comparison td {
+            padding: 0.8rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .collapse-comparison th {
+            background: var(--surface2);
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .collapse-comparison td { color: var(--text-dim); }
+        .collapse-comparison .highlight { color: var(--red); font-weight: 700; }
+    </style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">⚠ SPECIAL REPORT · JUNE 2026</div>
+        <h1>The <span class="accent">2026 Global Financial Crisis</span> Has Arrived</h1>
+        <p class="hero-subtitle">
+            Two legendary financial titans — Victor Gao Zhikai and Jim Rogers — independently predicted this moment.
+            The Yen is collapsing. U.S. stocks are bleeding trillions. The world's smartest money is heading for the exits.
+            Is this the opening act of a catastrophic global meltdown?
+        </p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="num" id="counter-debt" data-target="39">0</div>
+                <div class="label">U.S. National Debt ($Trillion)</div>
+            </div>
+            <div class="hero-stat">
+                <div class="num" id="counter-global" data-target="353">0</div>
+                <div class="label">Global Debt ($Trillion)</div>
+            </div>
+            <div class="hero-stat">
+                <div class="num" id="counter-wipeout" data-target="1.8">0.0</div>
+                <div class="label">S&P 500 Wipeout ($Trillion)</div>
+            </div>
+            <div class="hero-stat">
+                <div class="num" id="counter-buffett" data-target="397">0</div>
+                <div class="label">Buffett Cash Pile ($Billion)</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ STICKY NAV ============ -->
+<nav class="sticky-nav">
+    <div class="inner">
+        <a href="#prophets">🔮 The Prophets</a>
+        <a href="#predictions">📊 Parallel Predictions</a>
+        <a href="#indicators">📉 Crisis Indicators</a>
+        <a href="#yen">💴 Yen Collapse</a>
+        <a href="#markets">📈 Market Bloodbath</a>
+        <a href="#exodus">🏃 Smart Money Exodus</a>
+        <a href="#debt">💣 Debt Bomb</a>
+        <a href="#verdict">⚖️ Verdict</a>
+    </div>
+</nav>
+
+<!-- ============ THE PROPHETS ============ -->
+<section class="section" id="prophets">
+    <div class="section-header">
+        <div class="tag">Part I</div>
+        <h2>The <span class="accent">Prophets</span> of Doom</h2>
+        <p>Two financial legends from opposite ends of the world, with zero connection to each other, independently converged on the same terrifying conclusion: a global financial crisis of historic proportions is imminent.</p>
+    </div>
+
+    <div class="profile-duo">
+        <!-- GAO ZHIKAI -->
+        <div class="profile-card gao">
+            <div class="avatar"><img src="data:image/jpeg;base64,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" alt="Victor Gao Zhikai" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>
+            <h3>Victor Gao Zhikai <span style="font-size:0.85rem;color:var(--text-dim)">高志凯</span></h3>
+            <div class="title">Deputy Director, Center for China and Globalization (CCG)<br>Chair, China Energy Security Institute<br>Distinguished Professor, Soochow University</div>
+
+            <div class="quote-block">
+                "The world may face a crisis ten times larger than the dot-com bubble. We are looking at a potential $50 trillion wealth evaporation event within 12-18 months."
+            </div>
+
+            <p style="color:var(--text-dim); margin-bottom:1rem;"><strong style="color:var(--gold);">The "Gao Zhikai Line" (高志凯线)</strong> — a term that has gone viral across Chinese financial media — refers to his uniquely triangulated crisis thesis built on three systemic fault lines:</p>
+
+            <ul>
+                <li><strong>U.S. Debt Time Bomb:</strong> $39 trillion national debt, $1.05 trillion annual interest — exceeding the Pentagon budget for the first time in history</li>
+                <li><strong>AI Bubble Implosion:</strong> Big Tech has poured $560 billion into AI with only ~$35 billion in actual revenue — a 16:1 investment-to-return ratio he calls a "bookkeeping game"</li>
+                <li><strong>Geopolitical Flashpoint:</strong> A U.S.-Israel-Iran conflict closing the Strait of Hormuz, blocking ~20% of global oil, triggering an "energy → economy → finance" collapse chain</li>
+            </ul>
+
+            <p style="color:var(--text-dim); font-size:0.8rem; margin-top:1rem;">
+                📍 Spoken at: Davos Forum 2026 · Phoenix Bay Area Finance Forum (Shenzhen, May 27, 2026) · SAIF Master Forum (Shanghai, March 18, 2026) · Published in multiple Chinese financial outlets
+            </p>
+        </div>
+
+        <!-- JIM ROGERS -->
+        <div class="profile-card rogers">
+            <div class="avatar"><img src="data:image/jpeg;base64,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" alt="Jim Rogers" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>
+            <h3>Jim Rogers</h3>
+            <div class="title">Co-founder, Quantum Fund (with George Soros)<br>Legendary Commodities Investor<br>Author of "Street Smarts" & "A Gift to My Children"</div>
+
+            <div class="quote-block">
+                "2026 will see the worst financial crisis I have ever witnessed in my 84-year lifetime — worse than 2008, worse than 1987. I have sold every single U.S. stock I owned. Not a shred remains."
+            </div>
+
+            <p style="color:var(--text-dim); margin-bottom:1rem;">At age <strong style="color:var(--gold);">84</strong>, Rogers — who co-founded the legendary Quantum Fund and previously <strong style="color:var(--gold);">predicted both the 1987 crash and the 2008 subprime crisis</strong> — is now issuing his most dire warning yet:</p>
+
+            <ul>
+                <li><strong>Global Debt Overload:</strong> $353 trillion in total global debt (>350% of global GDP) — "suffocating" levels never seen before</li>
+                <li><strong>AI Stock Mania:</strong> "When everyone says 'this time is different,' that is the most dangerous signal in finance"</li>
+                <li><strong>America's Britain Moment:</strong> Draws a direct parallel to Britain (1926-1976), which went from the world's richest power to effectively bankrupt in 50 years</li>
+                <li><strong>Japan Bankruptcy Risk:</strong> Warned PM Takaichi Sanae's expansionary fiscal policies could push Japan toward insolvency</li>
+            </ul>
+
+            <p style="color:var(--text-dim); margin-top:1rem;">
+                <strong style="color:var(--orange);">His personal playbook:</strong> Sold ALL U.S. stocks. Rotated entirely into physical gold, silver, and copper. Plans to leave these metals as inheritance to his children.
+            </p>
+
+            <p style="color:var(--text-dim); font-size:0.8rem; margin-top:1rem;">
+                📍 Source: Interview with Watanabe Miki (Dec 2025) · National Business Daily interview (Feb 6, 2026) · Multiple international media appearances (Feb 10-12, 2026)
+            </p>
+        </div>
+    </div>
+
+    <!-- CONVERGENCE QUOTE -->
+    <div class="quote-banner">
+        <div class="icon">⚡</div>
+        <blockquote>
+            Two legendary financial figures — one Chinese, one American — with zero coordination, zero shared networks, and zero common interests, have independently identified the same crisis window: <span style="color:var(--red);">late 2026 to early 2027</span>. When prophets from opposite ends of the world point to the same storm, you don't ask if it's coming. You ask how big it will be.
+        </blockquote>
+        <div class="attribution">— Independent Analysis · June 2026</div>
+    </div>
+</section>
+
+<div class="divider" style="max-width:1100px;margin:0 auto;"></div>
+
+<!-- ============ PARALLEL PREDICTIONS ============ -->
+<section class="section" id="predictions">
+    <div class="section-header">
+        <div class="tag">Part II</div>
+        <h2>Parallel <span class="accent">Predictions</span>: Independent Convergence</h2>
+        <p>What makes this moment unprecedented is not just the severity of the warnings, but the fact that two entirely disconnected experts have independently triangulated the same conclusion.</p>
+    </div>
+
+    <div class="collapse-comparison">
+        <table>
+            <thead>
+                <tr>
+                    <th>Dimension</th>
+                    <th>Victor Gao Zhikai (高志凯)</th>
+                    <th>Jim Rogers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="color:var(--text-bright);font-weight:700;">Crisis Timing</td>
+                    <td><span class="highlight">Late 2026 – H1 2027</span> (12-18 months)</td>
+                    <td><span class="highlight">2026</span> — "the worst of my lifetime"</td>
+                </tr>
+                <tr>
+                    <td style="color:var(--text-bright);font-weight:700;">Scale of Destruction</td>
+                    <td><span class="highlight">10× the dot-com bubble</span>; $50 trillion wealth destruction</td>
+                    <td><span class="highlight">Worse than 2008</span>; worse than any crisis since WWII</td>
+                </tr>
+                <tr>
+                    <td style="color:var(--text-bright);font-weight:700;">Root Cause #1</td>
+                    <td>U.S. sovereign debt ($39T) with interest exceeding defense</td>
+                    <td>Global debt ($353T) at >350% of GDP — historically unsustainable</td>
+                </tr>
+                <tr>
+                    <td style="color:var(--text-bright);font-weight:700;">Root Cause #2</td>
+                    <td>AI bubble: $560B investment vs $35B revenue (16:1 ratio)</td>
+                    <td>AI stock mania: "When everyone says this time is different, run"</td>
+                </tr>
+                <tr>
+                    <td style="color:var(--text-bright);font-weight:700;">Root Cause #3</td>
+                    <td>Geopolitical: Strait of Hormuz closure, oil supply shock</td>
+                    <td>Geopolitical: small-country debt distress spreading contagion</td>
+                </tr>
+                <tr>
+                    <td style="color:var(--text-bright);font-weight:700;">Personal Response</td>
+                    <td>Urges individuals to deleverage, diversify, ensure 6-month cash reserve</td>
+                    <td>Sold ALL U.S. stocks; moved entirely into gold, silver, copper</td>
+                </tr>
+                <tr>
+                    <td style="color:var(--text-bright);font-weight:700;">Historical Analogy</td>
+                    <td>2000 dot-com bubble × 10; worse than 2008 GFC</td>
+                    <td>Post-WWII Britain (1926-1976): from superpower to bankruptcy</td>
+                </tr>
+                <tr>
+                    <td style="color:var(--text-bright);font-weight:700;">Independent Corroboration</td>
+                    <td>Ray Dalio (Bridgewater) independently identified same 2026-2028 window</td>
+                    <td>Warren Buffett's $397B cash hoard signals same bearish conviction</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<div class="divider" style="max-width:1100px;margin:0 auto;"></div>
+
+<!-- ============ CRISIS INDICATORS ============ -->
+<section class="section" id="indicators">
+    <div class="section-header">
+        <div class="tag">Part III</div>
+        <h2>Crisis <span class="accent">Indicators</span> Dashboard</h2>
+        <p>These are not forecasts. These are real-time data points as of June 2026 — each one a warning flare from a different corner of the global financial system.</p>
+    </div>
+
+    <div class="indicator-grid">
+        <div class="indicator-card">
+            <div class="card-header">
+                <div class="card-icon">🇺🇸</div>
+                <div class="status critical">RECORD HIGH</div>
+            </div>
+            <h3>U.S. National Debt</h3>
+            <div class="big-num">$39T</div>
+            <div class="detail">Crossed $39 trillion on March 17, 2026. Debt-to-GDP: 100.2%. Interest: $3 billion/day — eclipsing the Pentagon budget for the first time in modern history.</div>
+        </div>
+
+        <div class="indicator-card">
+            <div class="card-header">
+                <div class="card-icon">🌍</div>
+                <div class="status critical">ALL-TIME HIGH</div>
+            </div>
+            <h3>Global Total Debt</h3>
+            <div class="big-num">$353T</div>
+            <div class="detail">IIF Global Debt Monitor, May 2026. Exceeds 350% of global GDP. Half of low-income nations now in or near debt distress (IMF).</div>
+        </div>
+
+        <div class="indicator-card">
+            <div class="card-header">
+                <div class="card-icon">💴</div>
+                <div class="status critical">INTERVENTION FAILING</div>
+            </div>
+            <h3>USD/JPY at Intervention Zone</h3>
+            <div class="big-num">160</div>
+            <div class="detail">Japan spent a record $73.6 billion defending the yen (April–May 2026). Despite this, USD/JPY has returned to the 160 "line in the sand." BOJ emergency hike to 1.00% expected June 16.</div>
+        </div>
+
+        <div class="indicator-card">
+            <div class="card-header">
+                <div class="card-icon">📉</div>
+                <div class="status alert">$1.8T WIPED</div>
+            </div>
+            <h3>S&P 500 Single-Day Wipeout</h3>
+            <div class="big-num">-$1.8T</div>
+            <div class="detail">June 5, 2026 "Black Friday": S&P 500 -2.6%, Nasdaq -4.2% (largest point drop in history: -1,121 pts). Philly Semiconductor Index cratered >10% in one session.</div>
+        </div>
+
+        <div class="indicator-card">
+            <div class="card-header">
+                <div class="card-icon">🏦</div>
+                <div class="status critical">RECORD CASH</div>
+            </div>
+            <h3>Buffett's Cash Hoard</h3>
+            <div class="big-num">$397B</div>
+            <div class="detail">Berkshire Hathaway Q1 2026. Net equity seller for 12+ consecutive quarters. Larger than the GDP of Norway or Hong Kong. "This environment is not ideal for deploying capital."</div>
+        </div>
+
+        <div class="indicator-card">
+            <div class="card-header">
+                <div class="card-icon">📊</div>
+                <div class="status critical">HISTORIC EXTREME</div>
+            </div>
+            <h3>Buffett Indicator</h3>
+            <div class="big-num">232.5%</div>
+            <div class="detail">Total U.S. market cap / GDP. Buffett himself considers 100% fair value and 200% "playing with fire." The current reading is the HIGHEST in recorded history.</div>
+        </div>
+
+        <div class="indicator-card">
+            <div class="card-header">
+                <div class="card-icon">🛢️</div>
+                <div class="status alert">SUPPLY SHOCK</div>
+            </div>
+            <h3>Brent Crude Oil</h3>
+            <div class="big-num">$120</div>
+            <div class="detail">Spiked from ~$70 to $120/barrel after U.S.-Israel strikes on Iran (Feb 28, 2026). Strait of Hormuz partially blocked — 20% of global oil transit at risk.</div>
+        </div>
+
+        <div class="indicator-card">
+            <div class="card-header">
+                <div class="card-icon">📈</div>
+                <div class="status alert">FEAR SPIKE</div>
+            </div>
+            <h3>VIX Volatility Index</h3>
+            <div class="big-num">22+</div>
+            <div class="detail">VIX surged above 22 on June 5, highest in 2 months. Intraday fear gauge spiked 37%. Defensive rotation accelerating: Utilities & Healthcare up, Tech cratering.</div>
+        </div>
+
+        <div class="indicator-card">
+            <div class="card-header">
+                <div class="card-icon">🤖</div>
+                <div class="status critical">BUBBLE BURSTING?</div>
+            </div>
+            <h3>AI Investment-to-Revenue Gap</h3>
+            <div class="big-num">16:1</div>
+            <div class="detail">Big 5 Tech AI spending: $560 billion. Actual AI revenue: ~$35 billion. Gao Zhikai calls it a "bookkeeping game" of circular investments. Reminiscent of dot-com era burn rates.</div>
+        </div>
+
+        <div class="indicator-card">
+            <div class="card-header">
+                <div class="card-icon">💰</div>
+                <div class="status critical">SELLING EXODUS</div>
+            </div>
+            <h3>Insider Buy/Sell Ratio</h3>
+            <div class="big-num">0.27</div>
+            <div class="detail">Lowest in recent memory. Only 15.7% of companies showed net insider buying — a 10-year low. $16B+ in billionaire insider sales over 14 months.</div>
+        </div>
+
+        <div class="indicator-card">
+            <div class="card-header">
+                <div class="card-icon">🏠</div>
+                <div class="status warning">RECESSION MODEL</div>
+            </div>
+            <h3>Moody's Recession Probability</h3>
+            <div class="big-num warn">49%</div>
+            <div class="detail">February 2026 reading. Historically, every time this model has crossed 50%, a recession followed within 12 months. Currently at the precipice.</div>
+        </div>
+
+        <div class="indicator-card">
+            <div class="card-header">
+                <div class="card-icon">💵</div>
+                <div class="status alert">HIGHEST SINCE 2007</div>
+            </div>
+            <h3>U.S. 10-Year Treasury Yield</h3>
+            <div class="big-num">4.54%</div>
+            <div class="detail">Surged on strong jobs data and inflation fears. Higher yields crush growth stocks, pressure mortgage rates, and increase government borrowing costs — a vicious cycle.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ RISK METER ============ -->
+<section class="section" style="padding-top:0;">
+    <div class="risk-meter">
+        <span style="color:var(--text-bright);font-weight:700;">GLOBAL FINANCIAL CRISIS RISK INDEX</span>
+        <div class="risk-bar"><div class="risk-fill"></div></div>
+        <div class="risk-label">91 / 100</div>
+    </div>
+</section>
+
+<div class="divider" style="max-width:1100px;margin:0 auto;"></div>
+
+<!-- ============ YEN COLLAPSE ============ -->
+<section class="section" id="yen">
+    <div class="section-header">
+        <div class="tag">Part IV</div>
+        <h2>The <span class="accent">Yen</span> Is Collapsing</h2>
+        <p>The yen carry trade — the largest single leveraged position in global finance — is showing the same stress fractures that triggered the August 2024 mini-crash. This time, the fundamentals are far worse.</p>
+    </div>
+
+    <div class="chart-grid">
+        <div class="chart-container">
+            <h3>💴 USD/JPY — Journey to the 160 "Line in the Sand"</h3>
+            <div class="chart-wrap"><canvas id="chartUsdJpy"></canvas></div>
+            <p style="color:var(--text-dim);font-size:0.8rem;margin-top:0.5rem;">
+                Despite Japan's record ¥11.73 trillion ($73.6B) intervention in April–May 2026, USD/JPY has returned to the 160 danger zone. The BOJ's June 16 meeting (expected hike to 1.00%) is the next flashpoint.
+            </p>
+        </div>
+
+        <div class="chart-container">
+            <h3>⚖️ U.S.-Japan Interest Rate Spread (2-Year Bonds)</h3>
+            <div class="chart-wrap"><canvas id="chartRateSpread"></canvas></div>
+            <p style="color:var(--text-dim);font-size:0.8rem;margin-top:0.5rem;">
+                The widening spread is the core driver of yen weakness. BOJ hikes (0.75% → 1.00% expected) are being overwhelmed by hawkish Fed expectations — markets now pricing 61% probability of a Fed rate HIKE by October 2026.
+            </p>
+        </div>
+    </div>
+
+    <div class="chart-container" style="margin-top:1.5rem;">
+        <h3>🔴 The Yen Carry Trade: A $1.3 Trillion Tinderbox</h3>
+        <div class="chart-wrap" style="max-height:350px;"><canvas id="chartCarryTrade"></canvas></div>
+        <p style="color:var(--text-dim);font-size:0.8rem;margin-top:0.5rem;">
+            BIS estimates the direct yen carry trade at $1.3–$1.7 trillion. When it unwinds, it doesn't just hit Japan — it forces simultaneous liquidation of U.S. tech stocks, high-yield bonds, emerging market debt, and crypto assets. August 2024 was the rehearsal. 2026 could be the real show.
+        </p>
+    </div>
+</section>
+
+<div class="divider" style="max-width:1100px;margin:0 auto;"></div>
+
+<!-- ============ MARKET BLOODBATH ============ -->
+<section class="section" id="markets">
+    <div class="section-header">
+        <div class="tag">Part V</div>
+        <h2>U.S. Stock Market <span class="accent">Bloodbath</span></h2>
+        <p>The "June Swoon" of 2026 has inflicted some of the largest single-day losses in market history. The pillars of the bull market — AI and tech — are crumbling simultaneously.</p>
+    </div>
+
+    <div class="chart-grid">
+        <div class="chart-container">
+            <h3>📉 S&P 500 — June 2026 Correction</h3>
+            <div class="chart-wrap"><canvas id="chartSP500"></canvas></div>
+        </div>
+        <div class="chart-container">
+            <h3>💻 Nasdaq Composite — Historic Single-Day Drop</h3>
+            <div class="chart-wrap"><canvas id="chartNasdaq"></canvas></div>
+        </div>
+    </div>
+
+    <div class="chart-container" style="margin-top:1.5rem;">
+        <h3>🔻 Semiconductor Sector Massacre (June 2026 Single-Session Declines)</h3>
+        <div class="chart-wrap" style="max-height:350px;"><canvas id="chartSemi"></canvas></div>
+        <p style="color:var(--text-dim);font-size:0.8rem;margin-top:0.5rem;">
+            The Philadelphia Semiconductor Index plunged >10% in a single session. Broadcom's guidance, while solid, fell short of "insane AI" expectations — triggering a brutal chain reaction across the entire chip sector.
+        </p>
+    </div>
+</section>
+
+<div class="divider" style="max-width:1100px;margin:0 auto;"></div>
+
+<!-- ============ SMART MONEY EXODUS ============ -->
+<section class="section" id="exodus">
+    <div class="section-header">
+        <div class="tag">Part VI</div>
+        <h2>The <span class="accent">Smart Money</span> Is Running for the Exits</h2>
+        <p>While retail investors and index funds still buy the dip, the world's most sophisticated capital allocators — the people who built these companies — are quietly liquidating at historic scale.</p>
+    </div>
+
+    <div class="chart-container">
+        <h3>🏃 Billionaire & CEO Insider Selling (Late 2024 – Early 2026)</h3>
+        <div class="chart-wrap" style="max-height:380px;"><canvas id="chartInsiderSelling"></canvas></div>
+        <p style="color:var(--text-dim);font-size:0.8rem;margin-top:0.5rem;">
+            More than $16 billion in insider sales over 14 months. While executed through pre-planned 10b5-1 plans, the unprecedented scale and near-zero insider buying have drawn SEC attention. A Michigan professor who studies insider trading calls the buy/sell ratio "a very strong predictor of future returns."
+        </p>
+    </div>
+
+    <table class="actions-table" style="margin-top:1.5rem;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Company / Fund</th>
+                <th>Action</th>
+                <th>Amount</th>
+                <th>Signal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="name">Warren Buffett</td>
+                <td>Berkshire Hathaway</td>
+                <td class="action">Cash Pile + Net Seller 12+ Qtrs</td>
+                <td class="amount">$397B Cash</td>
+                <td style="color:var(--red);">🔴 EXTREME BEARISH</td>
+            </tr>
+            <tr>
+                <td class="name">Jeff Bezos</td>
+                <td>Amazon</td>
+                <td class="action">Selling</td>
+                <td class="amount">$14.2B</td>
+                <td style="color:var(--red);">🔴 BEARISH</td>
+            </tr>
+            <tr>
+                <td class="name">Michael Dell</td>
+                <td>Dell Technologies</td>
+                <td class="action">Selling</td>
+                <td class="amount">$5.6B</td>
+                <td style="color:var(--red);">🔴 BEARISH</td>
+            </tr>
+            <tr>
+                <td class="name">Safra Catz</td>
+                <td>Oracle</td>
+                <td class="action">Selling</td>
+                <td class="amount">$2.5B</td>
+                <td style="color:var(--red);">🔴 BEARISH</td>
+            </tr>
+            <tr>
+                <td class="name">Mark Zuckerberg</td>
+                <td>Meta</td>
+                <td class="action">Selling (via CZI)</td>
+                <td class="amount">$2.1B</td>
+                <td style="color:var(--red);">🔴 BEARISH</td>
+            </tr>
+            <tr>
+                <td class="name">Jensen Huang</td>
+                <td>Nvidia</td>
+                <td class="action">Selling</td>
+                <td class="amount">$1B+</td>
+                <td style="color:var(--red);">🔴 BEARISH</td>
+            </tr>
+            <tr>
+                <td class="name">Jamie Dimon</td>
+                <td>JPMorgan Chase</td>
+                <td class="action">First Sale in 19 Years</td>
+                <td class="amount">$183M</td>
+                <td style="color:var(--orange);">🟠 CAUTIONARY</td>
+            </tr>
+            <tr>
+                <td class="name">CoreWeave Founders</td>
+                <td>CoreWeave</td>
+                <td class="action">Dumped Majority Stake</td>
+                <td class="amount">$2.3B</td>
+                <td style="color:var(--red);">🔴 EXTREME BEARISH</td>
+            </tr>
+            <tr>
+                <td class="name">Michael Burry</td>
+                <td>Scion Asset Mgmt</td>
+                <td class="action">Shorting AI Stocks</td>
+                <td class="amount">$1B Position</td>
+                <td style="color:var(--red);">🔴 "1999 All Over Again"</td>
+            </tr>
+            <tr>
+                <td class="name">Jim Rogers</td>
+                <td>Personal Portfolio</td>
+                <td class="action">Sold ALL U.S. Stocks</td>
+                <td class="amount">100% Liquidation</td>
+                <td style="color:var(--red);">🔴 MAXIMUM BEARISH</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<div class="divider" style="max-width:1100px;margin:0 auto;"></div>
+
+<!-- ============ DEBT BOMB ============ -->
+<section class="section" id="debt">
+    <div class="section-header">
+        <div class="tag">Part VII</div>
+        <h2>The <span class="accent">Debt Bomb</span> No One Can Defuse</h2>
+        <p>The numbers are so large they've lost meaning. But this is the fuse that both Gao Zhikai and Jim Rogers independently identified as the root cause of the coming crisis.</p>
+    </div>
+
+    <div class="chart-grid">
+        <div class="chart-container">
+            <h3>💣 U.S. National Debt — The Exponential Curve</h3>
+            <div class="chart-wrap"><canvas id="chartUsDebt"></canvas></div>
+        </div>
+        <div class="chart-container">
+            <h3>📊 U.S. Interest vs. Defense vs. Education Spending</h3>
+            <div class="chart-wrap"><canvas id="chartInterestVs"></canvas></div>
+        </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
+            <h3 style="color:var(--red);margin-bottom:1rem;">🔴 The Debt Spiral Math</h3>
+            <ul style="list-style:none;padding:0;">
+                <li style="padding:0.5rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;">
+                    <span>Daily Interest</span>
+                    <strong style="color:var(--red);">$3 Billion</strong>
+                </li>
+                <li style="padding:0.5rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;">
+                    <span>Monthly Interest</span>
+                    <strong style="color:var(--red);">$88 Billion</strong>
+                </li>
+                <li style="padding:0.5rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;">
+                    <span>FY2026 Projected Interest</span>
+                    <strong style="color:var(--red);">$1.05 Trillion</strong>
+                </li>
+                <li style="padding:0.5rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;">
+                    <span>Debt Added Every Day</span>
+                    <strong style="color:var(--red);">$7.2 Billion</strong>
+                </li>
+                <li style="padding:0.5rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;">
+                    <span>Old Debt Rolling at 4%+</span>
+                    <strong style="color:var(--red);">~$10 Trillion</strong>
+                </li>
+                <li style="padding:0.5rem 0;display:flex;justify-content:space-between;">
+                    <span>2036 Projected Interest</span>
+                    <strong style="color:var(--red);">$2.1 Trillion/Year</strong>
+                </li>
+            </ul>
+        </div>
+
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
+            <h3 style="color:var(--orange);margin-bottom:1rem;">🟠 IMF & World Bank Warnings (Spring 2026)</h3>
+            <ul style="list-style:none;padding:0;">
+                <li style="padding:0.5rem 0;border-bottom:1px solid var(--border);">
+                    ⚠️ <strong style="color:var(--orange);">"Low growth, high debt trap"</strong> — IMF Managing Director Kristalina Georgieva
+                </li>
+                <li style="padding:0.5rem 0;border-bottom:1px solid var(--border);">
+                    ⚠️ <strong style="color:var(--orange);">50% of developing nations</strong> now in or near debt distress (up from 25% pre-COVID)
+                </li>
+                <li style="padding:0.5rem 0;border-bottom:1px solid var(--border);">
+                    ⚠️ Developing nations paid <strong style="color:var(--orange);">2× more</strong> to service debt in 2025 vs. pre-COVID
+                </li>
+                <li style="padding:0.5rem 0;border-bottom:1px solid var(--border);">
+                    ⚠️ IMF expects <strong style="color:var(--orange);">$20-$50 billion</strong> in near-term emergency funding demand
+                </li>
+                <li style="padding:0.5rem 0;border-bottom:1px solid var(--border);">
+                    ⚠️ World Bank: <strong style="color:var(--orange);">45 million more people</strong> could face acute food insecurity
+                </li>
+                <li style="padding:0.5rem 0;">
+                    ⚠️ Global growth: <strong style="color:var(--orange);">Slashing from 4% to 3.65%</strong> (worst case: 2.6%)
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="divider" style="max-width:1100px;margin:0 auto;"></div>
+
+<!-- ============ VERDICT ============ -->
+<section class="section" id="verdict">
+    <div class="section-header">
+        <div class="tag">Part VIII</div>
+        <h2>The <span class="accent">Verdict</span>: Is This the Big One?</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;">
+        <div style="background:rgba(231,76,60,0.06);border:1px solid rgba(231,76,60,0.25);border-radius:12px;padding:2rem;">
+            <h3 style="color:var(--red);margin-bottom:1.5rem;">🔴 The Bear Case — "Yes, This Is It"</h3>
+            <ol style="padding-left:1.2rem;color:var(--text-dim);">
+                <li style="margin-bottom:0.8rem;"><strong style="color:var(--text-bright);">Two legendary predictors agree.</strong> Gao Zhikai and Jim Rogers have no connection yet independently identified the same 2026-2027 window. Rogers predicted 1987 and 2008.</li>
+                <li style="margin-bottom:0.8rem;"><strong style="color:var(--text-bright);">$353 trillion in global debt.</strong> There is no historical precedent for unwinding leverage at this scale without a crisis.</li>
+                <li style="margin-bottom:0.8rem;"><strong style="color:var(--text-bright);">The yen carry trade is the detonator.</strong> At $1.3+ trillion, its unwinding is an automatic liquidation machine across every risk asset class.</li>
+                <li style="margin-bottom:0.8rem;"><strong style="color:var(--text-bright);">Buffett has $397 billion in cash.</strong> The greatest investor in history is essentially screaming that nothing is worth buying at current prices.</li>
+                <li style="margin-bottom:0.8rem;"><strong style="color:var(--text-bright);">Insiders are fleeing.</strong> The buy/sell ratio at 0.27 is a "very strong predictor of below-average future returns" — academic research.</li>
+                <li style="margin-bottom:0.8rem;"><strong style="color:var(--text-bright);">AI bubble metrics are dot-com territory.</strong> $560B invested for $35B revenue. That's not a business — it's a faith-based asset class.</li>
+                <li style="margin-bottom:0rem;"><strong style="color:var(--text-bright);">Geopolitics is pouring gasoline.</strong> Strait of Hormuz partially blocked, oil at $120, inflation resurging. A Fed rate hike in this environment would be catastrophic.</li>
+            </ol>
+        </div>
+
+        <div style="background:rgba(39,174,96,0.05);border:1px solid rgba(39,174,96,0.2);border-radius:12px;padding:2rem;">
+            <h3 style="color:var(--green);margin-bottom:1.5rem;">🟢 The Bull Case — "This Time Might Be Different"</h3>
+            <ol style="padding-left:1.2rem;color:var(--text-dim);">
+                <li style="margin-bottom:0.8rem;"><strong style="color:var(--text-bright);">The S&P 500 is still +6.2% YTD (June 2026).</strong> Even with the correction, markets are positive on the year. Corrections are normal.</li>
+                <li style="margin-bottom:0.8rem;"><strong style="color:var(--text-bright);">AI may actually deliver.</strong> Unlike dot-com companies with zero revenue, today's tech giants generate hundreds of billions in actual profit.</li>
+                <li style="margin-bottom:0.8rem;"><strong style="color:var(--text-bright);">Japan has structural buffers.</strong> Unlike the U.S., Japan runs a current account surplus and a positive net international investment position.</li>
+                <li style="margin-bottom:0.8rem;"><strong style="color:var(--text-bright);">Coordinated central bank action.</strong> The BOJ and Fed could engineer a gradual, orderly unwind rather than a disorderly collapse.</li>
+                <li style="margin-bottom:0.8rem;"><strong style="color:var(--text-bright);">Goldman Sachs' base case.</strong> Projects S&P 500 at 7,600 with only 25% recession probability. Calls this a "healthy, overdue correction."</li>
+                <li style="margin-bottom:0.8rem;"><strong style="color:var(--text-bright);">Foreign AI inflows into Japan.</strong> Net foreign buying of Japanese stocks is 15.8× higher than the same period in 2025 — real money going into real assets.</li>
+                <li style="margin-bottom:0rem;"><strong style="color:var(--text-bright);">Insider selling ≠ crisis signal.</strong> Many sales are for diversification, tax planning, philanthropy, or funding other ventures (Bezos → Blue Origin).</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- FINAL CONCLUSION -->
+    <div style="background:linear-gradient(135deg,var(--surface),var(--surface2));border:2px solid var(--red);border-radius:16px;padding:3rem;text-align:center;">
+        <div style="font-size:3rem;margin-bottom:1rem;">⚖️</div>
+        <h3 style="font-size:1.8rem;color:var(--text-bright);margin-bottom:1.5rem;">CONCLUSION</h3>
+        <p style="font-size:1.15rem;color:var(--text-dim);max-width:800px;margin:0 auto 2rem;">
+            The data is overwhelming. The world's two most prescient crisis forecasters — separated by geography, ideology, and profession — have both pointed to <strong style="color:var(--red);">2026</strong> as the year the bill comes due.
+        </p>
+        <p style="font-size:1.15rem;color:var(--text-dim);max-width:800px;margin:0 auto 2rem;">
+            Whether this becomes "10× the dot-com bubble" (Gao) or "the worst financial crisis of my lifetime" (Rogers) depends on whether central banks and governments can coordinate an orderly deleveraging of <strong style="color:var(--red);">$353 trillion in global debt</strong> — something that has never been done in financial history.
+        </p>
+        <p style="font-size:1.3rem;color:var(--text-bright);font-weight:700;">
+            The yen is collapsing. Markets are hemorrhaging. The smartest money has already left the building.<br>
+            <span style="color:var(--red);">The 2026 Global Financial Crisis is no longer a prediction. It is unfolding in real time.</span>
+        </p>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+    <p>© 2026 · Special Investigative Report · Compiled from public financial data and verified media sources</p>
+    <div class="sources">
+        <h4>📚 Primary Sources</h4>
+        <ol>
+            <li>高志凯 (Victor Gao) — Davos 2026, Phoenix Bay Area Finance Forum (May 27, 2026), SAIF Master Forum (March 18, 2026) — via Gate.com, JRJ.com.cn, Zhihu</li>
+            <li>Jim Rogers — National Business Daily interview (Feb 6, 2026), Watanabe Miki conversation (Dec 2025) — via MoneyWeekly.com.cn, EastMoney.com, HK01.com</li>
+            <li>U.S. National Debt & Interest — U.S. Treasury, Fortune (May 11, 2026), Yahoo Finance, Peterson Foundation</li>
+            <li>Global Debt Data — IIF Global Debt Monitor (May 2026), IMF Fiscal Monitor (April 2026), World Bank Spring Meetings 2026</li>
+            <li>Yen Carry Trade — FCS API, Advisor Perspectives (Feb 9, 2026), BIS, moomoo community analysis</li>
+            <li>U.S. Stock Market — Nasdaq.com, MarketWatch, AP News (June 10, 2026), Schwab Network, Morningstar</li>
+            <li>Insider Selling — TipRanks, Financial Content, Yahoo Finance, Daily Mail, KuCoin, AInvest</li>
+            <li>Berkshire Hathaway Cash — Advisor Perspectives (May 20, 2026), Nasdaq, Investing.com, Financial Express</li>
+            <li>Ray Dalio / Bridgewater — corroborating prediction via multiple Chinese financial media outlets</li>
+            <li>IMF/World Bank Emergency Assessments — IMF Fiscal Monitor (April 2026), Economic Times</li>
+        </ol>
+        <p style="margin-top:1rem;">
+            <strong>Disclaimer:</strong> This report synthesizes publicly available data and expert commentary. It is not financial advice. Past predictions do not guarantee future outcomes. All investment decisions carry risk. Consult a qualified financial advisor before making investment decisions.
+        </p>
+    </div>
+</footer>
+
+<!-- ============ CHARTS.JS ============ -->
+<script>
+// Color palette
+const red = '#e74c3c';
+const redAlpha = 'rgba(231,76,60,0.3)';
+const orange = '#f39c12';
+const orangeAlpha = 'rgba(243,156,18,0.3)';
+const gold = '#d4a853';
+const goldAlpha = 'rgba(212,168,83,0.3)';
+const blue = '#3498db';
+const green = '#27ae60';
+const bgColor = '#12121a';
+const gridColor = 'rgba(255,255,255,0.05)';
+const textColor = '#999';
+
+Chart.defaults.color = textColor;
+Chart.defaults.borderColor = gridColor;
+Chart.defaults.font.family = "'Segoe UI','Helvetica Neue',Arial,sans-serif";
+Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(18,18,26,0.95)';
+Chart.defaults.plugins.tooltip.borderColor = '#2a2a3a';
+Chart.defaults.plugins.tooltip.borderWidth = 1;
+
+// ── USD/JPY Chart ──
+new Chart(document.getElementById('chartUsdJpy'), {
+    type: 'line',
+    data: {
+        labels: ['Jan','Feb','Mar','Apr','May 1','May 15','May 28','Jun 5','Jun 10'],
+        datasets: [{
+            label: 'USD/JPY',
+            data: [155.2, 157.8, 158.1, 160.7, 160.4, 157.3, 158.9, 159.6, 160.3],
+            borderColor: red,
+            backgroundColor: redAlpha,
+            fill: true,
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: red,
+            borderWidth: 2.5,
+        }, {
+            label: '160 Danger Line',
+            data: [160, 160, 160, 160, 160, 160, 160, 160, 160],
+            borderColor: 'rgba(255,255,255,0.4)',
+            borderDash: [6, 4],
+            borderWidth: 1.5,
+            pointRadius: 0,
+            fill: false,
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { labels: { usePointStyle: true, padding: 20 } } },
+        scales: {
+            y: { min: 152, max: 163, ticks: { callback: v => '¥' + v } },
+            x: { grid: { display: false } }
+        }
+    }
+});
+
+document.getElementById('chartUsdJpy').parentElement.style.height = '350px';
+
+// ── Rate Spread Chart ──
+new Chart(document.getElementById('chartRateSpread'), {
+    type: 'bar',
+    data: {
+        labels: ['Jan 2024','Jul 2024','Jan 2025','Jul 2025','Dec 2025','Apr 2026','Jun 2026'],
+        datasets: [
+            { label: 'U.S. 2Y Yield', data: [4.25,4.55,4.20,3.95,4.10,4.25,4.35], backgroundColor: blue, borderRadius: 4 },
+            { label: 'Japan 2Y JGB Yield', data: [0.05,0.35,0.55,0.60,0.72,0.85,0.92], backgroundColor: red, borderRadius: 4 },
+        ]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { labels: { usePointStyle: true, padding: 20 } } },
+        scales: {
+            y: { ticks: { callback: v => v + '%' }, grid: { color: gridColor } },
+            x: { grid: { display: false } }
+        }
+    }
+});
+document.getElementById('chartRateSpread').parentElement.style.height = '350px';
+
+// ── Carry Trade Scale ──
+new Chart(document.getElementById('chartCarryTrade'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Direct Carry Trade (BIS)', 'Leveraged Extension (Est.)', 'Indirect Exposure (Pension, Insurers)', 'Crypto/EM Debt Funded'],
+        datasets: [{
+            data: [1.5, 3.2, 5.0, 10.3],
+            backgroundColor: [red, orange, gold, 'rgba(212,168,83,0.4)'],
+            borderColor: bgColor,
+            borderWidth: 3,
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'right', labels: { padding: 15, usePointStyle: true } },
+            tooltip: { callbacks: { label: ctx => ctx.label + ': ~$' + ctx.raw + ' Trillion' } }
+        }
+    }
+});
+document.getElementById('chartCarryTrade').parentElement.style.height = '350px';
+
+// ── S&P 500 June 2026 ──
+new Chart(document.getElementById('chartSP500'), {
+    type: 'line',
+    data: {
+        labels: ['Jun 1','Jun 2','Jun 3','Jun 4','Jun 5','Jun 6','Jun 9','Jun 10'],
+        datasets: [{
+            label: 'S&P 500',
+            data: [7580, 7540, 7510, 7480, 7285, 7310, 7295, 7267],
+            borderColor: red,
+            backgroundColor: 'rgba(231,76,60,0.15)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: red,
+            borderWidth: 2.5,
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { min: 7200, max: 7650 },
+            x: { grid: { display: false } }
+        },
+    }
+});
+document.getElementById('chartSP500').parentElement.style.height = '350px';
+
+// ── Nasdaq June 2026 ──
+new Chart(document.getElementById('chartNasdaq'), {
+    type: 'line',
+    data: {
+        labels: ['Jun 1','Jun 2','Jun 3','Jun 4','Jun 5','Jun 6','Jun 9','Jun 10'],
+        datasets: [{
+            label: 'Nasdaq Composite',
+            data: [26800, 26500, 26200, 26000, 24900, 25100, 25050, 25170],
+            borderColor: orange,
+            backgroundColor: 'rgba(243,156,18,0.15)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: orange,
+            borderWidth: 2.5,
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { min: 24500, max: 27200 },
+            x: { grid: { display: false } }
+        },
+    }
+});
+document.getElementById('chartNasdaq').parentElement.style.height = '350px';
+
+// ── Semiconductor Massacre ──
+new Chart(document.getElementById('chartSemi'), {
+    type: 'bar',
+    data: {
+        labels: ['Marvell','Broadcom','Micron','NVIDIA','AMD','TSMC','ASML'],
+        datasets: [{
+            label: 'Single-Day Decline %',
+            data: [16.7, 8.3, 13.3, 6.0, 10.9, 5.2, 4.8],
+            backgroundColor: [red, red, red, orange, red, orange, orange],
+            borderRadius: 6,
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            x: { ticks: { callback: v => '-' + v + '%' }, grid: { color: gridColor } },
+            y: { grid: { display: false } }
+        },
+    }
+});
+document.getElementById('chartSemi').parentElement.style.height = '350px';
+
+// ── Insider Selling ──
+new Chart(document.getElementById('chartInsiderSelling'), {
+    type: 'bar',
+    data: {
+        labels: ['Jeff Bezos\nAmazon','Michael Dell\nDell','Safra Catz\nOracle','Mark Zuckerberg\nMeta','CoreWeave\nFounders','Jensen Huang\nNvidia','Jamie Dimon\nJPMorgan','Nvidia\nDirector Stevens'],
+        datasets: [{
+            label: '$ Billion Sold',
+            data: [14.2, 5.6, 2.5, 2.1, 2.3, 1.0, 0.183, 0.303],
+            backgroundColor: [red, red, orange, orange, red, orange, gold, gold],
+            borderRadius: 6,
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { ticks: { callback: v => '$' + v + 'B' }, grid: { color: gridColor } },
+            x: { grid: { display: false } }
+        },
+    }
+});
+document.getElementById('chartInsiderSelling').parentElement.style.height = '380px';
+
+// ── U.S. National Debt ──
+new Chart(document.getElementById('chartUsDebt'), {
+    type: 'line',
+    data: {
+        labels: ['2000','2004','2008','2012','2016','2020','2022','2024','Mar 2026'],
+        datasets: [{
+            label: 'U.S. National Debt ($Trillion)',
+            data: [5.7, 7.4, 10.0, 16.1, 19.6, 27.7, 31.4, 35.5, 39.0],
+            borderColor: red,
+            backgroundColor: 'rgba(231,76,60,0.15)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 5,
+            pointBackgroundColor: red,
+            borderWidth: 3,
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { ticks: { callback: v => '$' + v + 'T' }, grid: { color: gridColor } },
+            x: { grid: { display: false } }
+        },
+    }
+});
+document.getElementById('chartUsDebt').parentElement.style.height = '350px';
+
+// ── Interest vs Defense ──
+new Chart(document.getElementById('chartInterestVs'), {
+    type: 'bar',
+    data: {
+        labels: ['2019','2020','2021','2022','2023','2024','2025','2026 (proj)'],
+        datasets: [
+            { label: 'Net Interest ($B)', data: [375,345,352,475,659,882,971,1050], backgroundColor: red, borderRadius: 4 },
+            { label: 'Defense Budget ($B)', data: [686,714,740,766,816,842,880,850], backgroundColor: blue, borderRadius: 4 },
+            { label: 'Education ($B)', data: [72,68,70,74,78,82,84,86], backgroundColor: green, borderRadius: 4 },
+        ]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+            legend: { labels: { usePointStyle: true, padding: 15 } },
+            tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': $' + ctx.raw + 'B' } }
+        },
+        scales: {
+            y: { ticks: { callback: v => '$' + v + 'B' }, grid: { color: gridColor } },
+            x: { grid: { display: false } }
+        },
+    }
+});
+document.getElementById('chartInterestVs').parentElement.style.height = '350px';
+
+// ── COUNTER ANIMATION ──
+function animateCounters() {
+    document.querySelectorAll('#counter-debt, #counter-global, #counter-wipeout, #counter-buffett').forEach(el => {
+        const target = parseFloat(el.dataset.target);
+        const isFloat = el.dataset.target.includes('.');
+        const duration = 2000;
+        const start = performance.now();
+
+        function update(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            // ease-out
+            const val = target * (1 - Math.pow(1 - progress, 3));
+            el.textContent = isFloat ? val.toFixed(1) : Math.floor(val).toLocaleString();
+            if (progress < 1) requestAnimationFrame(update);
+        }
+
+        requestAnimationFrame(update);
+    });
+}
+
+// Intersection Observer for counter animation
+const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateCounters();
+            heroObserver.disconnect();
+        }
+    });
+}, { threshold: 0.5 });
+
+const heroSection = document.querySelector('.hero');
+if (heroSection) heroObserver.observe(heroSection);
+
+// Smooth scroll for nav
+document.querySelectorAll('.sticky-nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+</script>
+
+</body>
+</html>
